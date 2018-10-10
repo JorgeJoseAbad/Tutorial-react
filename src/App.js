@@ -1,28 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{Component} from 'react';
+import Table from './Table';
+import Form from './Form';
+import Api from './Api'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+  state = {
+   characters: []
+};
+
+  removeCharacter = (index) => {
+      const { characters } = this.state;
+
+      this.setState({
+          characters: characters.filter((character, i) => {
+              return i !== index;
+          })
+      });
   }
+
+  handleSubmit = character => {
+    this.setState({characters: [...this.state.characters, character]});
+}
+
+
+    render() {
+
+        return (
+            <div className="container">
+              <h1>React Tutorial</h1>
+              <h3>Courtesy of <a href="https://www.taniarascia.com/" target="_blank">Tania Rascia</a></h3>
+              <pre>A table of data, a form to load this table, and data downloaded from an API</pre>
+              <Table
+                characters={this.state.characters}
+                removeCharacter={this.removeCharacter}
+              />
+              <Form handleSubmit={this.handleSubmit}/>
+              <Api />
+            </div>
+        );
+    }
 }
 
 export default App;
