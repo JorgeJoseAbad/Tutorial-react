@@ -1,5 +1,7 @@
-#React Tutorial
+# React Tutorial
+
 Based on: [Tania Rascia](https://www.taniarascia.com/getting-started-with-react/)
+@taniarascia Thank you!
 
 It show:
 - A table with name, job, and a delete botton.
